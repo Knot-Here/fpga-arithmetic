@@ -1,0 +1,24 @@
+`timescale 1ns/1ps
+module arithmetic_top_tb;
+
+    reg [7:0] a, b;           // Test inputs
+    wire [7:0] sum;           // Output from adder
+    wire [15:0] prod;         // Output from multiplier
+
+    // Instantiate the top-level module
+    arithmetic_top uut (
+        .a(a),
+        .b(b),
+        .sum(sum),
+        .prod(prod)
+    );
+
+    initial begin
+        $monitor("Time: %t | A: %d | B: %d | Sum: %d | Prod: %d", $time, a, b, sum, prod);
+        a = 8'd10; b = 8'd20; #10;  // Test case 1: Sum=30, Prod=200
+        a = 8'd5;  b = 8'd3;  #10;  // Test case 2: Sum=8, Prod=15
+        a = 8'd50; b = 8'd70; #10;  // Test case 3: Sum=120, Prod=3500
+        $stop;  // End simulation
+    end
+
+endmodule

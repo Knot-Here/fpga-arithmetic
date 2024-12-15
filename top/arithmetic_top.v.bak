@@ -1,0 +1,20 @@
+module arithmetic_top (
+    input [7:0] a,        // Input A
+    input [7:0] b,        // Input B
+    output [7:0] sum,     // Sum from the adder
+    output [15:0] prod    // Product from the multiplier
+);
+    // Instantiate the adder
+    adder u_adder (
+        .a(a),
+        .b(b),
+        .sum(sum)
+    );
+
+    // Instantiate the multiplier
+    multiplier u_multiplier (
+        .a(a),
+        .b(b),
+        .prod(prod)
+    );
+endmodule
